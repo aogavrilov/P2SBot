@@ -1,7 +1,6 @@
 numpy
 scikit-learn
 deepmux
-torch
 torchvision
 aiogram==2.9.2
 aiohttp==3.6.2
