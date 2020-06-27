@@ -1,8 +1,11 @@
+import asyncio
 import logging
 import json
 from aiogram import Bot, Dispatcher, executor, types
 from PIL import Image
 import os
+
+from aiogram.types import ChatActions
 
 tgTok = None
 deepmxTok = None
@@ -60,6 +63,13 @@ async def start_dialog(message: types.Message):
     poll_keyboard.add(types.KeyboardButton("Отмена"))
     await message.answer("Выберите действие, которое хотите совершить", reply_markup=poll_keyboard)
 
+@disp.message_handler(commands="log")
+async def return_log(message: types.Message):
+    user_id = message.from_user.id
+    await bot.send_chat_action(user_id, ChatActions.UPLOAD_DOCUMENT)
+    await asyncio.sleep(1)  # скачиваем файл и отправляем его пользователю
+    TEXT_FILE = open("app.log", "rb")
+    await bot.send_document(user_id, TEXT_FILE)
 
 @disp.message_handler()
 async def echo(message: types.Message):
