@@ -12,7 +12,7 @@ import sklearn.preprocessing
 import deepmux
 #import torch
 #from torchvision import transforms
-
+logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 with open("config.json", "r") as readcfg:
     data = json.load(readcfg)
     tgTok = data['tgTok']
