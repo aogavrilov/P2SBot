@@ -170,7 +170,7 @@ async def photo_ed(message: types.Message):
         os.remove( "images/" + str(message.from_user.id) + 'style.jpg')
     else:
         await message.answer("Ой, ты не выбрал, что хочешь сделать с картинкой. Введи /start и выбери на клавиатуре действие!")
-
+#
 
 
 

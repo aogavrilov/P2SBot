@@ -175,3 +175,4 @@ class StyleTransfer:
         return self.output
 
 #(img * 255).astype(np.uint8)
+#
