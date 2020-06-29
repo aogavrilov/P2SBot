@@ -1,4 +1,5 @@
 import lib.copy as copy
+
 import os
 import torch
 import torch.nn as nn
@@ -53,7 +54,7 @@ class StyleLoss(nn.Module):
 
 class StyleTransfer:
 
-    async def image_loader(self, image_name):
+    def image_loader(self, image_name):
         imsize = 256
         loader = transforms.Compose([
             transforms.Resize(imsize),
@@ -123,14 +124,14 @@ class StyleTransfer:
         return model, style_losses, content_losses
 
 
-    async def run_style_transfer(self, cnn, normalization_mean, normalization_std,
+    def run_style_transfer(self, cnn, normalization_mean, normalization_std,
                            content_img, style_img, input_img, num_steps=50,
                            style_weight=100000, content_weight=1):
         model, style_losses, content_losses = self.get_style_model_and_losses(cnn, normalization_mean, normalization_std,
                                                                          style_img, content_img)
         optimizer = self.get_input_optimizer(input_img)
         run = [0]
-        async def doSome():
+        def doSome():
             def closure():
                 input_img.data.clamp_(0, 1)
                 optimizer.zero_grad()
@@ -160,7 +161,8 @@ class StyleTransfer:
             optimizer.step(closure)
 
         while run[0] <= num_steps:
-            await doSome()
+
+            doSome()
         input_img.data.clamp_(0, 1)
         return input_img
 
@@ -168,11 +170,15 @@ class StyleTransfer:
         self.style = style
         self.pic = pic
 
-    async def getRes(self):
-        self.style_img = await self.image_loader(self.style)
-        self.content_img = await self.image_loader(self.pic)
+    def getRes(self):
+        self.style_img = self.image_loader(self.style)
+        self.content_img = self.image_loader(self.pic)
         self.input_img = self.content_img.clone()
-        self.output = await self.run_style_transfer(self.cnn, self.cnn_normalization_mean,
+
+
+
+
+        self.output = self.run_style_transfer(self.cnn, self.cnn_normalization_mean,
                                               self.cnn_normalization_std, self.content_img, self.style_img,
                                               self.input_img)
 

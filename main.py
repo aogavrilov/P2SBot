@@ -1,5 +1,7 @@
 import asyncio
 import logging
+import multiprocessing
+from concurrent.futures import ThreadPoolExecutor
 import json
 from aiogram import Bot, Dispatcher, executor, types
 from PIL import Image
@@ -7,7 +9,7 @@ import os
 import sklearn
 import sklearn.preprocessing
 from aiogram.types import ChatActions
-
+from asgiref.sync import sync_to_async
 from styletr import StyleTransfer
 import numpy as np
 
@@ -17,7 +19,7 @@ deepmxTok = None
 import deepmux
 from torchvision import transforms
 
-logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+#logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 with open("config.json", "r") as readcfg:
     data = json.load(readcfg)
     tgTok = data['tgTok']
@@ -122,7 +124,8 @@ async def echo(message: types.Message):
         await message.answer("Данная команда неизвестна. Введите /start для отображения меню.")
         print(message.text)
 
-
+def sendimg(id):
+    pass
 @disp.message_handler(content_types=["photo"])
 async def photo_ed(message: types.Message):
     if (message.from_user.id in cycle):
@@ -182,17 +185,26 @@ async def photo_ed(message: types.Message):
         await message.photo[-1].download("images/" + str(message.from_user.id) + 'style.jpg')
         # img = Image.open('images/' + str(message.from_user.id) + '.jpg')
         await message.answer("Отлично! Осталось подождать 5-10 минут и бот пришлет результат.")
+        #async def asynctransf():
+
+
         nm = StyleTransfer("images/" + str(message.from_user.id) + '.jpg',
                            "images/" + str(message.from_user.id) + 'style.jpg')
-        x = await nm.getRes()
-
+        x = nm.getRes()
         x = Image.fromarray((x.detach().numpy().squeeze(0).transpose((1, 2, 0)) * 255).astype(np.uint8))
         x.save("images/" + str(message.from_user.id) + '.jpg')
-        img_ = open('images/' + str(message.from_user.id) + '.jpg', 'rb')
-        await bot.send_photo(message.from_user.id, img_, caption="Преобразованное фото")
+        with open('images/' + str(message.from_user.id) + '.jpg', 'rb') as img_:
+            await bot.send_photo(message.from_user.id, img_, caption="Преобразованное фото")
         styles_.remove(message.from_user.id)
         os.remove("images/" + str(message.from_user.id) + '.jpg')
         os.remove("images/" + str(message.from_user.id) + 'style.jpg')
+
+        #await asynctransf()
+        #pool = ThreadPoolExecutor(max_workers=multiprocessing.cpu_count())
+        #loop = asyncio.get_event_loop()
+        #loop.run_in_executor(pool, asynctransf)
+        #loop.close()
+
     else:
         await message.answer(
             "Ой, ты не выбрал, что хочешь сделать с картинкой. Введи /start и выбери на клавиатуре действие!")
