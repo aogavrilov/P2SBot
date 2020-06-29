@@ -53,7 +53,7 @@ class StyleLoss(nn.Module):
 
 class StyleTransfer:
 
-    def image_loader(self, image_name):
+    async def image_loader(self, image_name):
         imsize = 256
         loader = transforms.Compose([
             transforms.Resize(imsize),
@@ -162,12 +162,13 @@ class StyleTransfer:
         return input_img
 
     def __init__(self, pic, style):
-        self.style_img = self.image_loader(style)
-        self.content_img = self.image_loader(pic)
-        self.input_img = self.content_img.clone()
-
+        self.style = style
+        self.pic = pic
 
     async def getRes(self):
+        self.style_img = await self.image_loader(self.style)
+        self.content_img = await self.image_loader(self.pic)
+        self.input_img = self.content_img.clone()
         self.output = await self.run_style_transfer(self.cnn, self.cnn_normalization_mean,
                                               self.cnn_normalization_std, self.content_img, self.style_img,
                                               self.input_img)
