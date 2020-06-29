@@ -1,8 +1,8 @@
 FROM python:3
-WORKDIR /telegrambotp2s/
-ADD *.py /telegrambotp2s/
-ADD /images /telegrambotp2s/
-ADD requirements.txt /telegrambotp2s/
-ADD config.json /telegrambotp2s/
-RUN python3 -m pip install -r /telegrambotp2s/requirements.txt
+WORKDIR /P2SBot/
+ADD *.py /P2SBot/
+ADD /images /P2SBot/
+ADD requirements.txt /P2SBot/
+ADD config.json /P2SBot/
+RUN python3 -m pip install -r /P2SBot/requirements.txt
 CMD ["python3", "main.py"]
