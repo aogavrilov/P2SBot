@@ -9,14 +9,14 @@ import sklearn.preprocessing
 from aiogram.types import ChatActions
 
 from styletr import StyleTransfer
+import numpy as np
 
 tgTok = None
 deepmxTok = None
-import numpy as np
-
 
 import deepmux
 from torchvision import transforms
+
 logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 with open("config.json", "r") as readcfg:
     data = json.load(readcfg)
@@ -25,7 +25,6 @@ with open("config.json", "r") as readcfg:
 tgTok = '1159135693:AAFf_A3pLRsBfdkVVzRYRMbVeVEvzE-RFjQ'
 bot = Bot(token=tgTok)
 disp = Dispatcher(bot)
-
 
 styles = set()
 cycle = set()
@@ -60,6 +59,7 @@ class SomeModel:
         input_batch = input_tensor.unsqueeze(0)
         return input_batch.numpy()
 
+
 model = SomeModel("P2S")
 model2 = SomeModel("P2A")
 
@@ -74,6 +74,7 @@ async def start_dialog(message: types.Message):
     poll_keyboard.add(types.KeyboardButton("Отмена"))
     await message.answer("Выберите действие, которое хотите совершить", reply_markup=poll_keyboard)
 
+
 @disp.message_handler(commands="log")
 async def return_log(message: types.Message):
     user_id = message.from_user.id
@@ -81,6 +82,7 @@ async def return_log(message: types.Message):
     await asyncio.sleep(1)  # скачиваем файл и отправляем его пользователю
     TEXT_FILE = open("app.log", "rb")
     await bot.send_document(user_id, TEXT_FILE)
+
 
 @disp.message_handler()
 async def echo(message: types.Message):
@@ -91,15 +93,15 @@ async def echo(message: types.Message):
                              "с результатом\n"
                              )
     elif (message.text == "Преобразовать фото в скетч(криво увы)"):
-        if(message.from_user.id in styles_):
+        if (message.from_user.id in styles_):
             styles_.remove(message.from_user.id)
-        if(message.from_user.id in styles):
+        if (message.from_user.id in styles):
             styles.remove(message.from_user.id)
         await message.answer("Отправьте ОДНО фото, которое хотите преобразовать в скетч")
         cycle.add(message.from_user.id)
 
-    elif(message.text == "Style Transfer"):
-        if(message.from_user.id in cycle):
+    elif (message.text == "Style Transfer"):
+        if (message.from_user.id in cycle):
             cycle.remove(message.from_user.id)
         await message.answer("Отправьте ОДНО фото, на которое хотите наложить стиль")
         styles.add(message.from_user.id)
@@ -123,20 +125,20 @@ async def echo(message: types.Message):
 
 @disp.message_handler(content_types=["photo"])
 async def photo_ed(message: types.Message):
-    if(message.from_user.id in cycle):
+    if (message.from_user.id in cycle):
 
         await message.photo[-1].download("images/" + str(message.from_user.id) + '.jpg')
-        img = Image.open('images/'+ str(message.from_user.id) + '.jpg')
-        #open("images/" + str(message.from_user.id) + '.jpg', 'rb')
+        img = Image.open('images/' + str(message.from_user.id) + '.jpg')
+        # open("images/" + str(message.from_user.id) + '.jpg', 'rb')
         h, w = img.size
         # print(img.shape)
         t1 = transforms.Compose([
             transforms.Resize((512, 512)),
-          #  transforms.ToTensor()
+            #  transforms.ToTensor()
         ])
         t2 = transforms.Compose([
             transforms.Resize((256, 256)),
-          #  transforms.ToTensor()
+            #  transforms.ToTensor()
         ])
         img = t1(img)
         img = model(img)
@@ -150,7 +152,7 @@ async def photo_ed(message: types.Message):
         img = t(img).numpy()
         img = np.transpose(img, (1, 2, 0))
         img = Image.fromarray(np.uint8(img * 255))
-        img.save('images/'+ str(message.from_user.id) + '.jpg')
+        img.save('images/' + str(message.from_user.id) + '.jpg')
         img2 = t2(img)
         img2 = model2(img2)
         img2 = np.transpose(img2, (1, 2, 0))
@@ -163,24 +165,25 @@ async def photo_ed(message: types.Message):
         img2 = np.transpose(img2, (1, 2, 0))
         img2 = Image.fromarray(np.uint8(img2 * 255))
         img2.save('images/' + str(message.from_user.id) + '_2.jpg')
-        img_ = open('images/'+ str(message.from_user.id) + '.jpg', 'rb')
+        img_ = open('images/' + str(message.from_user.id) + '.jpg', 'rb')
         img_2 = open('images/' + str(message.from_user.id) + '_2.jpg', 'rb')
         media = [types.InputMediaPhoto(img_, "Преобразованное фото"), types.InputMediaPhoto(img_2)]
         await bot.send_media_group(message.from_user.id, media)
         cycle.remove(message.from_user.id)
         os.remove("images/" + str(message.from_user.id) + '.jpg')
 
-    elif(message.from_user.id in styles):
+    elif (message.from_user.id in styles):
         await message.photo[-1].download("images/" + str(message.from_user.id) + '.jpg')
         styles.remove(message.from_user.id)
         styles_.add(message.from_user.id)
         await message.answer("Принято! Отправь еще фотку стиля, который нужно перенести.")
 
-    elif(message.from_user.id in styles_):
+    elif (message.from_user.id in styles_):
         await message.photo[-1].download("images/" + str(message.from_user.id) + 'style.jpg')
-        #img = Image.open('images/' + str(message.from_user.id) + '.jpg')
+        # img = Image.open('images/' + str(message.from_user.id) + '.jpg')
         await message.answer("Отлично! Осталось подождать 5-10 минут и бот пришлет результат.")
-        nm = StyleTransfer("images/" + str(message.from_user.id) + '.jpg', "images/" + str(message.from_user.id) + 'style.jpg')
+        nm = StyleTransfer("images/" + str(message.from_user.id) + '.jpg',
+                           "images/" + str(message.from_user.id) + 'style.jpg')
         x = await nm.getRes()
 
         x = Image.fromarray((x.detach().numpy().squeeze(0).transpose((1, 2, 0)) * 255).astype(np.uint8))
@@ -189,12 +192,13 @@ async def photo_ed(message: types.Message):
         await bot.send_photo(message.from_user.id, img_, caption="Преобразованное фото")
         styles_.remove(message.from_user.id)
         os.remove("images/" + str(message.from_user.id) + '.jpg')
-        os.remove( "images/" + str(message.from_user.id) + 'style.jpg')
+        os.remove("images/" + str(message.from_user.id) + 'style.jpg')
     else:
-        await message.answer("Ой, ты не выбрал, что хочешь сделать с картинкой. Введи /start и выбери на клавиатуре действие!")
+        await message.answer(
+            "Ой, ты не выбрал, что хочешь сделать с картинкой. Введи /start и выбери на клавиатуре действие!")
+
+
 #
-
-
 
 
 if __name__ == "__main__":
@@ -202,4 +206,3 @@ if __name__ == "__main__":
     for file in files:
         os.remove('images/' + str(file))
     executor.start_polling(disp, skip_updates=True)
-
