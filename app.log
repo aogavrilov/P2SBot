@@ -1,0 +1,226 @@
+aiogram - WARNING - Updates were skipped successfully.
+aiogram.dispatcher.dispatcher - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "E:\project\code\venv\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 310, in start_polling
+    updates = await self.bot.get_updates(limit=limit, offset=offset, timeout=timeout)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\bot.py", line 95, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\base.py", line 202, in request
+    proxy=self.proxy, proxy_auth=self.proxy_auth, timeout=self.timeout, **kwargs)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 104, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 82, in check_result
+    exceptions.ConflictError.detect(description)
+  File "E:\project\code\venv\lib\site-packages\aiogram\utils\exceptions.py", line 136, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+aiogram.dispatcher.dispatcher - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "E:\project\code\venv\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 310, in start_polling
+    updates = await self.bot.get_updates(limit=limit, offset=offset, timeout=timeout)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\bot.py", line 95, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\base.py", line 202, in request
+    proxy=self.proxy, proxy_auth=self.proxy_auth, timeout=self.timeout, **kwargs)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 104, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 82, in check_result
+    exceptions.ConflictError.detect(description)
+  File "E:\project\code\venv\lib\site-packages\aiogram\utils\exceptions.py", line 136, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+aiogram.dispatcher.dispatcher - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "E:\project\code\venv\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 310, in start_polling
+    updates = await self.bot.get_updates(limit=limit, offset=offset, timeout=timeout)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\bot.py", line 95, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\base.py", line 202, in request
+    proxy=self.proxy, proxy_auth=self.proxy_auth, timeout=self.timeout, **kwargs)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 104, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 82, in check_result
+    exceptions.ConflictError.detect(description)
+  File "E:\project\code\venv\lib\site-packages\aiogram\utils\exceptions.py", line 136, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+aiogram.dispatcher.dispatcher - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "E:\project\code\venv\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 310, in start_polling
+    updates = await self.bot.get_updates(limit=limit, offset=offset, timeout=timeout)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\bot.py", line 95, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\base.py", line 202, in request
+    proxy=self.proxy, proxy_auth=self.proxy_auth, timeout=self.timeout, **kwargs)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 104, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 82, in check_result
+    exceptions.ConflictError.detect(description)
+  File "E:\project\code\venv\lib\site-packages\aiogram\utils\exceptions.py", line 136, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+aiogram.dispatcher.dispatcher - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "E:\project\code\venv\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 310, in start_polling
+    updates = await self.bot.get_updates(limit=limit, offset=offset, timeout=timeout)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\bot.py", line 95, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\base.py", line 202, in request
+    proxy=self.proxy, proxy_auth=self.proxy_auth, timeout=self.timeout, **kwargs)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 104, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 82, in check_result
+    exceptions.ConflictError.detect(description)
+  File "E:\project\code\venv\lib\site-packages\aiogram\utils\exceptions.py", line 136, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+aiogram.dispatcher.dispatcher - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "E:\project\code\venv\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 310, in start_polling
+    updates = await self.bot.get_updates(limit=limit, offset=offset, timeout=timeout)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\bot.py", line 95, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\base.py", line 202, in request
+    proxy=self.proxy, proxy_auth=self.proxy_auth, timeout=self.timeout, **kwargs)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 104, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 82, in check_result
+    exceptions.ConflictError.detect(description)
+  File "E:\project\code\venv\lib\site-packages\aiogram\utils\exceptions.py", line 136, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+aiogram.dispatcher.dispatcher - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "E:\project\code\venv\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 310, in start_polling
+    updates = await self.bot.get_updates(limit=limit, offset=offset, timeout=timeout)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\bot.py", line 95, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\base.py", line 202, in request
+    proxy=self.proxy, proxy_auth=self.proxy_auth, timeout=self.timeout, **kwargs)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 104, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 82, in check_result
+    exceptions.ConflictError.detect(description)
+  File "E:\project\code\venv\lib\site-packages\aiogram\utils\exceptions.py", line 136, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+aiogram.dispatcher.dispatcher - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "E:\project\code\venv\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 310, in start_polling
+    updates = await self.bot.get_updates(limit=limit, offset=offset, timeout=timeout)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\bot.py", line 95, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\base.py", line 202, in request
+    proxy=self.proxy, proxy_auth=self.proxy_auth, timeout=self.timeout, **kwargs)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 104, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 82, in check_result
+    exceptions.ConflictError.detect(description)
+  File "E:\project\code\venv\lib\site-packages\aiogram\utils\exceptions.py", line 136, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+aiogram.dispatcher.dispatcher - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "E:\project\code\venv\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 310, in start_polling
+    updates = await self.bot.get_updates(limit=limit, offset=offset, timeout=timeout)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\bot.py", line 95, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\base.py", line 202, in request
+    proxy=self.proxy, proxy_auth=self.proxy_auth, timeout=self.timeout, **kwargs)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 104, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 82, in check_result
+    exceptions.ConflictError.detect(description)
+  File "E:\project\code\venv\lib\site-packages\aiogram\utils\exceptions.py", line 136, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+aiogram.dispatcher.dispatcher - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "E:\project\code\venv\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 310, in start_polling
+    updates = await self.bot.get_updates(limit=limit, offset=offset, timeout=timeout)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\bot.py", line 95, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\base.py", line 202, in request
+    proxy=self.proxy, proxy_auth=self.proxy_auth, timeout=self.timeout, **kwargs)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 104, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 82, in check_result
+    exceptions.ConflictError.detect(description)
+  File "E:\project\code\venv\lib\site-packages\aiogram\utils\exceptions.py", line 136, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+aiogram.dispatcher.dispatcher - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "E:\project\code\venv\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 310, in start_polling
+    updates = await self.bot.get_updates(limit=limit, offset=offset, timeout=timeout)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\bot.py", line 95, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\base.py", line 202, in request
+    proxy=self.proxy, proxy_auth=self.proxy_auth, timeout=self.timeout, **kwargs)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 104, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 82, in check_result
+    exceptions.ConflictError.detect(description)
+  File "E:\project\code\venv\lib\site-packages\aiogram\utils\exceptions.py", line 136, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+aiogram.dispatcher.dispatcher - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "E:\project\code\venv\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 310, in start_polling
+    updates = await self.bot.get_updates(limit=limit, offset=offset, timeout=timeout)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\bot.py", line 95, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\base.py", line 202, in request
+    proxy=self.proxy, proxy_auth=self.proxy_auth, timeout=self.timeout, **kwargs)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 104, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 82, in check_result
+    exceptions.ConflictError.detect(description)
+  File "E:\project\code\venv\lib\site-packages\aiogram\utils\exceptions.py", line 136, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+aiogram.dispatcher.dispatcher - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "E:\project\code\venv\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 310, in start_polling
+    updates = await self.bot.get_updates(limit=limit, offset=offset, timeout=timeout)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\bot.py", line 95, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\base.py", line 202, in request
+    proxy=self.proxy, proxy_auth=self.proxy_auth, timeout=self.timeout, **kwargs)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 104, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 82, in check_result
+    exceptions.ConflictError.detect(description)
+  File "E:\project\code\venv\lib\site-packages\aiogram\utils\exceptions.py", line 136, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+aiogram.dispatcher.dispatcher - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "E:\project\code\venv\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 310, in start_polling
+    updates = await self.bot.get_updates(limit=limit, offset=offset, timeout=timeout)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\bot.py", line 95, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\base.py", line 202, in request
+    proxy=self.proxy, proxy_auth=self.proxy_auth, timeout=self.timeout, **kwargs)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 104, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 82, in check_result
+    exceptions.ConflictError.detect(description)
+  File "E:\project\code\venv\lib\site-packages\aiogram\utils\exceptions.py", line 136, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+aiogram.dispatcher.dispatcher - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "E:\project\code\venv\lib\site-packages\aiogram\dispatcher\dispatcher.py", line 310, in start_polling
+    updates = await self.bot.get_updates(limit=limit, offset=offset, timeout=timeout)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\bot.py", line 95, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\base.py", line 202, in request
+    proxy=self.proxy, proxy_auth=self.proxy_auth, timeout=self.timeout, **kwargs)
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 104, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "E:\project\code\venv\lib\site-packages\aiogram\bot\api.py", line 82, in check_result
+    exceptions.ConflictError.detect(description)
+  File "E:\project\code\venv\lib\site-packages\aiogram\utils\exceptions.py", line 136, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
