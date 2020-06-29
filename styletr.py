@@ -130,7 +130,7 @@ class StyleTransfer:
                                                                          style_img, content_img)
         optimizer = self.get_input_optimizer(input_img)
         run = [0]
-        while run[0] <= num_steps:
+        async def doSome():
             def closure():
                 input_img.data.clamp_(0, 1)
                 optimizer.zero_grad()
@@ -158,6 +158,9 @@ class StyleTransfer:
                 return style_score + content_score
 
             optimizer.step(closure)
+
+        while run[0] <= num_steps:
+            await doSome()
         input_img.data.clamp_(0, 1)
         return input_img
 

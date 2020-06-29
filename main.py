@@ -61,6 +61,7 @@ class SomeModel:
         return input_batch.numpy()
 
 model = SomeModel("P2S")
+model2 = SomeModel("P2A")
 
 
 @disp.message_handler(commands="start")
@@ -133,8 +134,13 @@ async def photo_ed(message: types.Message):
             transforms.Resize((512, 512)),
           #  transforms.ToTensor()
         ])
+        t2 = transforms.Compose([
+            transforms.Resize((256, 256)),
+          #  transforms.ToTensor()
+        ])
         img = t1(img)
         img = model(img)
+
         img = np.transpose(img, (1, 2, 0))
         img = Image.fromarray((img * 255).astype(np.uint8))
         t = transforms.Compose([
@@ -145,15 +151,31 @@ async def photo_ed(message: types.Message):
         img = np.transpose(img, (1, 2, 0))
         img = Image.fromarray(np.uint8(img * 255))
         img.save('images/'+ str(message.from_user.id) + '.jpg')
+        img2 = t2(img)
+        img2 = model2(img2)
+        img2 = np.transpose(img2, (1, 2, 0))
+        img2 = Image.fromarray((img2 * 255).astype(np.uint8))
+        t = transforms.Compose([
+            transforms.Resize((w, h)),
+            transforms.ToTensor()
+        ])
+        img2 = t(img2).numpy()
+        img2 = np.transpose(img2, (1, 2, 0))
+        img2 = Image.fromarray(np.uint8(img2 * 255))
+        img2.save('images/' + str(message.from_user.id) + '_2.jpg')
         img_ = open('images/'+ str(message.from_user.id) + '.jpg', 'rb')
-        await bot.send_photo(message.from_user.id, img_, caption="Преобразованное фото")
+        img_2 = open('images/' + str(message.from_user.id) + '_2.jpg', 'rb')
+        media = [types.InputMediaPhoto(img_, "Преобразованное фото"), types.InputMediaPhoto(img_2)]
+        await bot.send_media_group(message.from_user.id, media)
         cycle.remove(message.from_user.id)
         os.remove("images/" + str(message.from_user.id) + '.jpg')
+
     elif(message.from_user.id in styles):
         await message.photo[-1].download("images/" + str(message.from_user.id) + '.jpg')
         styles.remove(message.from_user.id)
         styles_.add(message.from_user.id)
         await message.answer("Принято! Отправь еще фотку стиля, который нужно перенести.")
+
     elif(message.from_user.id in styles_):
         await message.photo[-1].download("images/" + str(message.from_user.id) + 'style.jpg')
         #img = Image.open('images/' + str(message.from_user.id) + '.jpg')
