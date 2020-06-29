@@ -157,15 +157,15 @@ async def photo_ed(message: types.Message):
     elif(message.from_user.id in styles_):
         await message.photo[-1].download("images/" + str(message.from_user.id) + 'style.jpg')
         #img = Image.open('images/' + str(message.from_user.id) + '.jpg')
-        await message.answer("Отлично! Осталось подождать 5-10 минут и нейросеть пришлет результат.")
+        await message.answer("Отлично! Осталось подождать 5-10 минут и бот пришлет результат.")
         nm = StyleTransfer("images/" + str(message.from_user.id) + '.jpg', "images/" + str(message.from_user.id) + 'style.jpg')
-        x = nm.getRes()
+        x = await nm.getRes()
 
         x = Image.fromarray((x.detach().numpy().squeeze(0).transpose((1, 2, 0)) * 255).astype(np.uint8))
         x.save("images/" + str(message.from_user.id) + '.jpg')
         img_ = open('images/' + str(message.from_user.id) + '.jpg', 'rb')
         await bot.send_photo(message.from_user.id, img_, caption="Преобразованное фото")
-        await styles_.remove(message.from_user.id)
+        styles_.remove(message.from_user.id)
         os.remove("images/" + str(message.from_user.id) + '.jpg')
         os.remove( "images/" + str(message.from_user.id) + 'style.jpg')
     else:

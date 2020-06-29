@@ -7,6 +7,7 @@ import torch.optim as optim
 import torchvision.models as models
 from torchvision import transforms
 from PIL import Image
+import asyncio
 
 
 def gram_matrix(input):
@@ -22,8 +23,8 @@ def gram_matrix(input):
 class Normalization(nn.Module):
     def __init__(self, mean, std):
         super(Normalization, self).__init__()
-        self.mean = torch.tensor(mean).view(-1, 1, 1)
-        self.std = torch.tensor(std).view(-1, 1, 1)
+        self.mean = torch.tensor(mean.clone().detach()).view(-1, 1, 1)
+        self.std = torch.tensor(std.clone().detach()).view(-1, 1, 1)
 
     def forward(self, img):
         return (img - self.mean) / self.std  # normalize img
@@ -52,7 +53,7 @@ class StyleLoss(nn.Module):
 
 class StyleTransfer:
 
-    def image_loader(self,image_name):
+    def image_loader(self, image_name):
         imsize = 256
         loader = transforms.Compose([
             transforms.Resize(imsize),
@@ -122,7 +123,7 @@ class StyleTransfer:
         return model, style_losses, content_losses
 
 
-    def run_style_transfer(self, cnn, normalization_mean, normalization_std,
+    async def run_style_transfer(self, cnn, normalization_mean, normalization_std,
                            content_img, style_img, input_img, num_steps=50,
                            style_weight=100000, content_weight=1):
         model, style_losses, content_losses = self.get_style_model_and_losses(cnn, normalization_mean, normalization_std,
@@ -166,10 +167,11 @@ class StyleTransfer:
         self.input_img = self.content_img.clone()
 
 
-    def getRes(self):
-        self.output = self.run_style_transfer(self.cnn, self.cnn_normalization_mean,
+    async def getRes(self):
+        self.output = await self.run_style_transfer(self.cnn, self.cnn_normalization_mean,
                                               self.cnn_normalization_std, self.content_img, self.style_img,
                                               self.input_img)
+
         return self.output
 
 #(img * 255).astype(np.uint8)
