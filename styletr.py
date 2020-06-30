@@ -1,4 +1,3 @@
-#import lib.copy as copy
 import copy
 import torch
 import torch.nn as nn
@@ -67,12 +66,9 @@ class StyleTransfer:
     cnn_normalization_mean = torch.tensor([0.485, 0.456, 0.406])
     cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225])
 
-
-
-
     content_layers_default = ['conv_4']
     style_layers_default = ['conv_1', 'conv_2', 'conv_3', 'conv_4', 'conv_5']
-    cnn = models.vgg13(pretrained=True, )
+    cnn = models.vgg19(pretrained=True, )
 
     def get_input_optimizer(self, input_img):
         optimizer = optim.LBFGS([input_img.requires_grad_()])
