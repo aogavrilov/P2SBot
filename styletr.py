@@ -1,6 +1,5 @@
 import lib.copy as copy
 
-import os
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -8,7 +7,6 @@ import torch.optim as optim
 import torchvision.models as models
 from torchvision import transforms
 from PIL import Image
-import asyncio
 
 
 def gram_matrix(input):
