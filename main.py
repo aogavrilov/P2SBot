@@ -1,7 +1,4 @@
 import asyncio
-import logging
-import multiprocessing
-from concurrent.futures import ThreadPoolExecutor
 import json
 from aiogram import Bot, Dispatcher, executor, types
 from PIL import Image
@@ -9,7 +6,6 @@ import os
 import sklearn
 import sklearn.preprocessing
 from aiogram.types import ChatActions
-from asgiref.sync import sync_to_async
 from styletr import StyleTransfer
 import numpy as np
 

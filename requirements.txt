@@ -1,7 +1,7 @@
 numpy~=1.19.0
 scikit-learn~=0.23.1
 deepmux~=0.3.1
-torchvision
+torchvision~=0.6.1+cpu
 aiogram~=2.9.2
 aiohttp~=3.6.2
 appdirs~=1.4.4
@@ -24,9 +24,12 @@ future~=0.18.2
 pip~=20.1.1
 setuptools~=47.1.0
 scipy~=1.5.0
-torch
+torch~=1.5.1+cpu
 joblib~=0.15.1
 requests~=2.24.0
 sklearn~=0.0
 threadpoolctl~=2.1.0
 urllib3~=1.25.9
+py~=1.9.0
+pytest~=5.4.3
+packaging~=20.4
