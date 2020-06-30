@@ -72,7 +72,7 @@ class StyleTransfer:
 
     content_layers_default = ['conv_4']
     style_layers_default = ['conv_1', 'conv_2', 'conv_3', 'conv_4', 'conv_5']
-    cnn = models.vgg19(pretrained=True).features.eval()
+    cnn = models.vgg11(pretrained=True, )
 
     def get_input_optimizer(self, input_img):
         optimizer = optim.LBFGS([input_img.requires_grad_()])
