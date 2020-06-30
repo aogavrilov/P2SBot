@@ -12,7 +12,6 @@ chardet~=3.0.4
 distlib~=0.3.0
 filelock~=3.0.12
 idna~=2.9
-copy
 multidict~=4.7.6
 Pillow~=7.1.2
 pytz~=2020.1
