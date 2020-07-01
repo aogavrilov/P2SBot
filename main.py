@@ -210,8 +210,7 @@ async def photo_ed(message: types.Message):
 
 
 if __name__ == "__main__":
-   # files = os.listdir(os.getcwd() + '/images/')
-    print(os.getcwd() + '/images/')
-    #for file in files:
-     #   os.remove(os.getcwd() + '/images/' + str(file))
+    files = os.listdir('images/')
+    for file in files:
+        os.remove('images/' + str(file))
     executor.start_polling(disp, skip_updates=True)

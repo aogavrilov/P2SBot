@@ -27,6 +27,7 @@ class Normalization(nn.Module):
     def forward(self, img):
         return (img - self.mean) / self.std  # normalize img
 
+
 class ContentLoss(nn.Module):
     def __init__(self, target, ):
         super(ContentLoss, self).__init__()
@@ -38,6 +39,7 @@ class ContentLoss(nn.Module):
         # and content at the moment image
         return input
 
+
 class StyleLoss(nn.Module):
     def __init__(self, target_feature):
         super(StyleLoss, self).__init__()
@@ -48,6 +50,7 @@ class StyleLoss(nn.Module):
         G = gram_matrix(input)  # G-matrix features
         self.loss = F.mse_loss(G, self.target)
         return input
+
 
 class StyleTransfer:
 
@@ -62,13 +65,12 @@ class StyleTransfer:
         image = loader(image).unsqueeze(0)  # Добавляем размерность(размер батча=1) для тензора
         return image
 
-
     cnn_normalization_mean = torch.tensor([0.485, 0.456, 0.406])
     cnn_normalization_std = torch.tensor([0.229, 0.224, 0.225])
 
     content_layers_default = ['conv_4']
     style_layers_default = ['conv_1', 'conv_2', 'conv_3', 'conv_4', 'conv_5']
-    cnn = models.vgg19(pretrained=True, )
+    cnn = models.vgg19(pretrained=True).features.eval()
 
     def get_input_optimizer(self, input_img):
         optimizer = optim.LBFGS([input_img.requires_grad_()])
@@ -117,14 +119,15 @@ class StyleTransfer:
         model = model[:(i + 1)]
         return model, style_losses, content_losses
 
-
     def run_style_transfer(self, cnn, normalization_mean, normalization_std,
                            content_img, style_img, input_img, num_steps=50,
                            style_weight=100000, content_weight=1):
-        model, style_losses, content_losses = self.get_style_model_and_losses(cnn, normalization_mean, normalization_std,
-                                                                         style_img, content_img)
+        model, style_losses, content_losses = self.get_style_model_and_losses(cnn, normalization_mean,
+                                                                              normalization_std,
+                                                                              style_img, content_img)
         optimizer = self.get_input_optimizer(input_img)
         run = [0]
+
         def doSome():
             def closure():
                 input_img.data.clamp_(0, 1)
@@ -155,7 +158,6 @@ class StyleTransfer:
             optimizer.step(closure)
 
         while run[0] <= num_steps:
-
             doSome()
         input_img.data.clamp_(0, 1)
         return input_img
@@ -169,14 +171,11 @@ class StyleTransfer:
         self.content_img = self.image_loader(self.pic)
         self.input_img = self.content_img.clone()
 
-
-
-
         self.output = self.run_style_transfer(self.cnn, self.cnn_normalization_mean,
                                               self.cnn_normalization_std, self.content_img, self.style_img,
                                               self.input_img)
 
         return self.output
 
-#(img * 255).astype(np.uint8)
+# (img * 255).astype(np.uint8)
 #
